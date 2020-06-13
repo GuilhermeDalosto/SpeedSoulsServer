@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const port = 3000;
+const port = 5000;
 const mysql = require('mysql');
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -45,7 +45,7 @@ function execSQLQuery(sqlQry, res) {
         host: "localhost",
         user: "root",
         password: "12345678",
-        port: 3306,
+        port: process.env.PORT || 5000,
         database: "soulsserver"
     });
 
