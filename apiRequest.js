@@ -11,7 +11,7 @@ const router = express.Router();
 router.get('/',(req, res) => res.json({message: 'Working'}));
 app.use('/',router);
 
-app.listen(port)
+app.listen(process.env.PORT || 5000)
 console.log('API Working');
 
 // Search all users
