@@ -42,11 +42,11 @@ router.delete('/usuario/:login?',(req,res) => {
 // SEARCH ALL USERS
 function execSQLQuery(sqlQry, res) {
     const conn = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "12345678",
+        host: "us-cdbr-east-05.cleardb.net",
+        user: "ba7227488ec6ba",
+        password: "acddcbb2",
         port: 3306,
-        database: "soulsserver"
+        database: "heroku_f4901450c04f807"
     });
 
     conn.query(sqlQry, function (error, results, fields) {
