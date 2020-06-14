@@ -23,7 +23,7 @@ router.get('/usuario',(req,res) => {
 router.get('/usuario/:login?/:password',(req,res) => {
     let filter = '';
     if (req.params.login) filter = "WHERE name =" +  "'" + req.params.login + "'";
-    filter += "AND senha =" +  "'" + req.params.password + "'";     
+    filter += "AND password =" +  "'" + req.params.password + "'";     
     execSQLQuery('SELECT * FROM usuario ' + filter, res);
 })
 
