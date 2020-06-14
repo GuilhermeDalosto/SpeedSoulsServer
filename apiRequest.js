@@ -22,7 +22,7 @@ router.get('/usuario',(req,res) => {
 // Search specific user
 router.get('/usuario/:login?/:password',(req,res) => {
     let filter = '';
-    if (req.params.login) filter = "WHERE login =" +  "'" + req.params.login + "'";
+    if (req.params.login) filter = "WHERE name =" +  "'" + req.params.login + "'";
     filter += "AND senha =" +  "'" + req.params.password + "'";     
     execSQLQuery('SELECT * FROM usuario ' + filter, res);
 })
@@ -30,7 +30,7 @@ router.get('/usuario/:login?/:password',(req,res) => {
 // Delete specific user
 router.delete('/usuario/:login?',(req,res) => {
     let filter = '';
-    if (req.params.login) filter = "WHERE login =" +  "'" + req.params.login + "'";    
+    if (req.params.login) filter = "WHERE name =" +  "'" + req.params.login + "'";    
     execSQLQuery('DELETE FROM usuario ' + filter, res);
 })
 
