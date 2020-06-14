@@ -45,7 +45,7 @@ function execSQLQuery(sqlQry, res) {
         host: "localhost",
         user: "root",
         password: "12345678",
-        port: process.env.PORT || 5000,
+        port: 3306,
         database: "soulsserver"
     });
 
