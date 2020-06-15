@@ -37,8 +37,8 @@ router.delete('/usuario/:login?',(req,res) => {
 
 router.post('/usuario',(req,res) => {
     const name = req.body.name.substring(0,10);
-    cost password = req.body.name.substring(0,12);    
-    execSQLQuery('INSERT INTO usuario(name,password) values($'{name}' ,$'{password}')', res);
+    const password = req.body.name.substring(0,12);    
+    execSQLQuery('INSERT INTO usuario(name,password) values($'{name}' ,$'{password}'), res);
 })
 
 // FUNCTIONS
