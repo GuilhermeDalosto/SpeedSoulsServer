@@ -23,7 +23,7 @@ router.get('/usuario',(req,res) => {
 // Send email
 router.get('sendEmail/:emailer?',(req,res) => {
 
-transporter.sendMail(mailOptions(req.params.emailer, function(error, info){
+transporter.sendMail(mailOptions(req.params.emailer), function(error, info){
   if (error) {
     console.log(error);
   } else {
