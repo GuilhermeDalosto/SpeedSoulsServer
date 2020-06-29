@@ -89,7 +89,7 @@ var transporter = nodemailer.createTransport({
   }
 });
 
-var mailOptions(email,message) = {
+function mailOptions(email,message){
   from: email,
   to: 'dalostoguilherme@gmail.com',
   subject: 'Support Message - Dark Souls Speedrun',
