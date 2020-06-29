@@ -1,4 +1,5 @@
 const express = require('express');
+const nodemailer = require('nodemailer');
 const app = express();
 const bodyParser = require('body-parser');
 const port = 5000;
@@ -18,6 +19,21 @@ console.log('API Working');
 router.get('/usuario',(req,res) => {
     execSQLQuery('SELECT * FROM usuario',res);
 })
+
+// Send email
+router.get('sendEmail/:emailer?',(req,res) => {
+
+transporter.sendMail(mailOptions(req.params.emailer, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+});
+
+});
+
+
 
 // Search specific user
 router.get('/usuario/:login?/:password',(req,res) => {
@@ -62,4 +78,32 @@ function execSQLQuery(sqlQry, res) {
         console.log('Executed');
     })
 }
+
+// NODE MAILER
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'gmdalosto@gmail.com',
+    pass: 'guigamano123'
+  }
+});
+
+var mailOptions(email,message) = {
+  from: email,
+  to: 'dalostoguilherme@gmail.com',
+  subject: 'Support Message - Dark Souls Speedrun',
+  html: '<h1>Support message</h1><p>Message Received from Dark Souls Speedrunner</p>',
+  text: message
+};
+
+
+
+
+
+
+
+
+
+
 
