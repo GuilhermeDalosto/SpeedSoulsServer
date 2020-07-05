@@ -1,16 +1,20 @@
+// Attributes for imports and constants
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const port = 5000;
 const mysql = require('mysql');
 
+// Encode with the express and json format using body parser
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
+// Router to def the connection with request of HTTP via client-side
 const router = express.Router();
 router.get('/',(req, res) => res.json({message: 'Working'}));
 app.use('/',router);
 
+// Time def for app to connect with Cloud Service
 app.listen(process.env.PORT || 5000)
 console.log('API Working');
 
@@ -34,14 +38,14 @@ router.delete('/usuario/:login?',(req,res) => {
     execSQLQuery('DELETE FROM usuario ' + filter, res);
 })
 
-
+// Register specific user
 router.post('/usuario',(req,res) => {
     const name = req.body.name.substring(0,10);
     const password = req.body.password.substring(0,12);    
     execSQLQuery(`INSERT INTO usuario(name,password) values('${name}' ,'${password}')`, res);
 })
 
-
+// Send email to support by getting logged user with his email and password
 router.post('/email/:mailer?/:message?',(req,res) => {
     const name = req.body.mailer;
     const message = req.body.message.substring(0,40);    
@@ -70,7 +74,7 @@ function execSQLQuery(sqlQry, res) {
     })
 }
 
-
+// Create transport to auth the user accordingly to his data on client-side
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -79,6 +83,7 @@ var transporter = nodemailer.createTransport({
   }
 });
 
+// Mail options and format to send to defined email categorized as support
 var mailOptions = {
   from: mailer,
   to: 'dalostoguilherme@gmail.com',
@@ -87,6 +92,7 @@ var mailOptions = {
   text: message
 };
 
+// Send email and get request and response
 transporter.sendMail(mailOptions, function(error, info){
   if (error) {
     console.log(error);
