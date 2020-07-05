@@ -41,6 +41,13 @@ router.post('/usuario',(req,res) => {
     execSQLQuery(`INSERT INTO usuario(name,password) values('${name}' ,'${password}')`, res);
 })
 
+
+router.post('/email/:mailer?/:message?',(req,res) => {
+    const name = req.body.mailer;
+    const message = req.body.message.substring(0,40);    
+    transporter.sendMail(mailOptions, function(error, info);    
+})
+
 // FUNCTIONS
 // SEARCH ALL USERS
 function execSQLQuery(sqlQry, res) {
@@ -62,4 +69,29 @@ function execSQLQuery(sqlQry, res) {
         console.log('Executed');
     })
 }
+
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: mailer,
+    pass: mailerPassword
+  }
+});
+
+var mailOptions = {
+  from: mailer,
+  to: 'dalostoguilherme@gmail.com',
+  subject: 'Support Email Souls Run',
+  html: 'Souls Runner Support Message',
+  text: message
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+});
 
